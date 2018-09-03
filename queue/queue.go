@@ -1,11 +1,13 @@
 package queue
 
+// Queue is a type represent a queue data structure
 type Queue struct {
 	container []interface{}
-	head int
-	tail int
+	head      int
+	tail      int
 }
 
+// NewQueue return the pointer to a Queue object
 func NewQueue() *Queue {
 	q := new(Queue)
 	q.container = make([]interface{}, 32)
@@ -14,6 +16,7 @@ func NewQueue() *Queue {
 	return q
 }
 
+// Push an element in the queue
 func (q *Queue) Push(x interface{}) {
 	if q.nextIndex(q.tail) == q.head {
 		q.resize()
@@ -22,6 +25,7 @@ func (q *Queue) Push(x interface{}) {
 	q.tail = q.nextIndex(q.tail)
 }
 
+// Pop an element form the queue
 func (q *Queue) Pop() interface{} {
 	x := q.Front()
 	q.head = q.nextIndex(q.head)
@@ -31,11 +35,13 @@ func (q *Queue) Pop() interface{} {
 	return x
 }
 
+// Front return the first element in the queue
 func (q *Queue) Front() interface{} {
 	x := q.container[q.head]
 	return x
 }
 
+// Size return the size of queue
 func (q *Queue) Size() (size int) {
 	if q.tail >= q.head {
 		size = q.tail - q.head
@@ -50,7 +56,7 @@ func (q *Queue) nextIndex(index int) int {
 }
 
 func (q *Queue) resize() {
-	c := make([]interface{}, len(q.container) << 1)
+	c := make([]interface{}, len(q.container)<<1)
 	if q.tail >= q.head {
 		copy(c, q.container[q.head:q.tail])
 	} else {
