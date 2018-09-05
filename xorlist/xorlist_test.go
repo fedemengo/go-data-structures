@@ -1,12 +1,12 @@
 package xorlist
 
 import (
-	"fmt"
 	"testing"
 )
 
 func TestXorList(t *testing.T) {
 	xl := NewXorList()
+	//debug.SetGCPercent(-1)
 
 	// contains 1000000, ..., 3, 2, 1, 0
 	const SIZE = 1000000
@@ -24,7 +24,6 @@ func TestXorList(t *testing.T) {
 	size := xl.Size()
 	next := SIZE - 1
 	times := 0
-	fmt.Println(size)
 	for xl.Size() > 0 {
 		if xl.Size() != size {
 			t.Error("POP error - Expected size", size, "get", xl.Size())
@@ -33,7 +32,7 @@ func TestXorList(t *testing.T) {
 		if y != next {
 			t.Error("POP error - Expected value", next, "get", y)
 		}
-		next = y - 1
+		next--
 		size--
 
 		if times < 10 && xl.Size() < S2 {

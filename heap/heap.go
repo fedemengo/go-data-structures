@@ -95,11 +95,12 @@ func (h *Heap) Front() Elem {
 }
 
 // BuildHeap builds a heap in linear time from a slice of Elem
-func BuildHeap(elems []Elem, cmp func(e1, e2 Elem) bool) *Heap {
+func BuildHeap(elems *[]Elem, cmp func(e1, e2 Elem) bool) *Heap {
 	h := new(Heap)
-	h.container = make([]Elem, len(elems))
+	h.container = make([]Elem, len(*elems))
+	copy(h.container, *elems)
 	h.cmp = cmp
-	h.size = len(elems)
+	h.size = len(*elems)
 
 	for i := h.size / 2; i > -1; i-- {
 		h.heapify(i)

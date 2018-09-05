@@ -2,7 +2,6 @@ package queue
 
 import (
 	"testing"
-	"fmt"
 )
 
 func TestQueue(t *testing.T) {
@@ -16,7 +15,6 @@ func TestQueue(t *testing.T) {
 	}
 	size := q.Size()
 	last := -1
-	fmt.Println(size)
 	for q.Size() > 0 {
 		if q.Size() != size {
 			t.Error("POP error - Expected size", size, "get", q.Size())
