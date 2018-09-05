@@ -1,5 +1,5 @@
-# Data Structure
+# Data Structures
 
-Implementation of Go data structure  as I need them
+Implementation of Go data structures as I need them
 
 
