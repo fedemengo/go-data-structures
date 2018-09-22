@@ -1,6 +1,8 @@
 package xorlist
 
 import (
+	"os"
+	"strconv"
 	"testing"
 )
 
@@ -9,8 +11,8 @@ func TestXorList(t *testing.T) {
 	//debug.SetGCPercent(-1)
 
 	// contains 1000000, ..., 3, 2, 1, 0
-	const SIZE = 1000000
-	const S2 = SIZE / 100
+	SIZE, _ := strconv.Atoi(os.Args[1])
+	var S2 = SIZE / 100
 	for i := 0; i < SIZE; i++ {
 		if xl.Size() != i {
 			t.Error("PUSH error - Expected size", i+1, "get", xl.Size())
@@ -19,6 +21,10 @@ func TestXorList(t *testing.T) {
 	}
 
 	// contains 0, 1, 2, 3, ..., 1000000
+	xl.Reverse()
+	xl.print()
+	xl.Reverse()
+	xl.print()
 	xl.Reverse()
 
 	size := xl.Size()

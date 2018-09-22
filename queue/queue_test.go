@@ -1,13 +1,18 @@
 package queue
 
 import (
+	"os"
+	"strconv"
 	"testing"
 )
 
 func TestQueue(t *testing.T) {
+
+	SIZE, _ := strconv.Atoi(os.Args[1])
+
 	q := NewQueue()
 
-	for i := 0; i < 1000000; i++ {
+	for i := 0; i < SIZE; i++ {
 		if q.Size() != i {
 			t.Error("PUSH error - Expected size", i+1, "get", q.Size())
 		}

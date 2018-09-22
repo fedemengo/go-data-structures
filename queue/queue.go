@@ -63,8 +63,6 @@ func (q *Queue) resize() {
 		n := copy(c, q.container[q.head:])
 		copy(c[n:], q.container[:q.tail])
 	}
-	size := q.Size()
-	q.head = 0
-	q.tail = size
+	q.head, q.tail = 0, q.Size()
 	q.container = c
 }

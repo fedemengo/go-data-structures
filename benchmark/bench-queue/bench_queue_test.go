@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"github.com/fedemengo/go-data-structures/queue"
-	xorlist "github.com/fedemengo/go-data-structures/xor-list"
+	"github.com/fedemengo/go-data-structures/xorlist"
 )
 
 func XorList(size int) {

@@ -1,16 +1,21 @@
 package heap
 
 import (
+	"os"
+	"strconv"
 	"testing"
 )
 
 func TestHeap(t *testing.T) {
+
+	SIZE, _ := strconv.Atoi(os.Args[1])
+
 	h := NewHeap(func(e1, e2 Elem) bool {
 		return e1.Key.(int) > e2.Key.(int)
 	})
 
 	elems := make([]Elem, 0)
-	for i := 0; i < 10000; i++ {
+	for i := 0; i < SIZE; i++ {
 		if h.Size() != i {
 			t.Error("PUSH error - Expected size", i+1, "get", h.Size())
 		}

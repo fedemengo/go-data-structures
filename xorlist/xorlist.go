@@ -119,9 +119,7 @@ func (xl *XorList) Size() int {
 
 // Reverse a list in constant time
 func (xl *XorList) Reverse() {
-	tmp := xl.head
-	xl.head = xl.tail
-	xl.tail = tmp
+	xl.head, xl.tail = xl.tail, xl.head
 }
 
 func (xl *XorList) print() {
@@ -130,8 +128,6 @@ func (xl *XorList) print() {
 	var last *xorListNode
 	for n != nil {
 		fmt.Println(n.elem.(int), n.index)
-		tmp := xor(n.np, last)
-		last = n
-		n = tmp
+		last, n = n, xor(n.np, last)
 	}
 }

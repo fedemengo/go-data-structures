@@ -53,9 +53,7 @@ func (h *Heap) heapify(i int) {
 	}
 
 	if index != i {
-		tmp := h.container[i]
-		h.container[i] = h.container[index]
-		h.container[index] = tmp
+		h.container[i], h.container[index] = h.container[index], h.container[i]
 		h.heapify(index)
 	}
 }
